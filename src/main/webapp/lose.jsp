@@ -5,7 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<div><%=LOSE%>
+<div>
+    ${sessionScope.player}
+    <%=", " + LOSE%>
 </div>
 <button type="button" onclick="restart()" value="<%=RESTART%>" >Restart</button>
 <script>

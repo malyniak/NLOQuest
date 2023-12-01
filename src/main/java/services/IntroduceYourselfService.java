@@ -9,7 +9,8 @@ public class IntroduceYourselfService extends Service {
     public Service getNextStep() {
         return nextStep;
     }
-    private IntroduceYourselfService() {}
+    private IntroduceYourselfService() {
+    }
     @Override
     public String getUrl() {
         return url;

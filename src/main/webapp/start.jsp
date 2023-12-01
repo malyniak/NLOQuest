@@ -1,13 +1,17 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="static text.TextContent.*" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
     <title>Quiz</title>
 </head>
 <body>
 <div>
-    <%= LOSE_MEMORY %>
+    <c:if test="${not empty sessionScope.player}">
+        <p>Ласкаво просимо, <c:out value="${sessionScope.player}" />!</p>
+    </c:if>
+   <%=LOSE_MEMORY %>
 </div>
 
 

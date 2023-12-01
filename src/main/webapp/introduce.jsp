@@ -7,7 +7,9 @@
     <title>Quiz</title>
 </head>
 <body>
-<div><%=WHO_ARE_YOU%></div>
+<div>
+    ${sessionScope.player}
+    <%=", " + WHO_ARE_YOU%></div>
 <form method="post" action="/introduce">
     <label>
         <input type="radio" name="answer" value="truth"><%=SAY_TRUTH%>

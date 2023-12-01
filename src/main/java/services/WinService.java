@@ -3,7 +3,8 @@ package services;
 public class WinService extends Service{
     private String url="/win.jsp";
     private static final WinService service=new WinService();
-    private WinService() {}
+    private WinService() {
+    }
 
     public void checkAnswer(Answer answer) {
 

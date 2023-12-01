@@ -6,7 +6,9 @@
     <title>Title</title>
 </head>
 <body>
-<div><%=WIN%>
+<div>
+    ${sessionScope.player}
+    <%=", " + WIN%>
 </div>
 <form action="/restart" method="post">
 <button  type="submit" value="<%=RESTART%>">Start again</button>

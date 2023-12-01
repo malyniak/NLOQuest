@@ -11,6 +11,11 @@
     <title>Title</title>
 </head>
 <body>
-
+<form action="/input" method="post">
+    <label for="player">Введіть ваше ім'я:</label>
+    <input type="text" id="player" name="player" required>
+    <br>
+    <input type="submit" value="Відправити">
+</form>
 </body>
 </html>

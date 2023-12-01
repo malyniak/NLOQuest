@@ -1,5 +1,7 @@
 package services;
 
+import playerInfo.Player;
+
 public class StartService extends Service {
     private static final StartService startService=new StartService();
     private String url="/start.jsp";
@@ -24,5 +26,8 @@ public class StartService extends Service {
             nextStep=CaptainBridgeService.getInstance();
         }
 
+    }
+    public Player createPlayer(String name) {
+       return new Player(name);
     }
 }

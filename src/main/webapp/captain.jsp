@@ -8,7 +8,9 @@
     <title>Quiz</title>
 </head>
 <body>
-<div><%=UP_ON_BRIDGE%>
+<div>
+   ${sessionScope.player}
+    <%=", " + UP_ON_BRIDGE%>
 </div>
 <form method="post" action="/captain">
     <label>

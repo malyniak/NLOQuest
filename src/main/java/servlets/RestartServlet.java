@@ -8,7 +8,6 @@ import java.io.IOException;
 public class RestartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        req.getSession().invalidate();
         resp.sendRedirect("/start.jsp");
     }
 }

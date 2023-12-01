@@ -3,7 +3,8 @@ package services;
 public class LoseService extends Service{
     private String url="/lose.jsp";
     private static final LoseService service=new LoseService();
-    private LoseService() {}
+    private LoseService() {
+    }
 
     @Override
     public void checkAnswer(Answer answer) {
