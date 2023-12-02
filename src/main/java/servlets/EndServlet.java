@@ -1,6 +1,7 @@
 package servlets;
 
-import services.Answer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import services.LoseService;
 
 import javax.servlet.RequestDispatcher;
@@ -13,12 +14,12 @@ import java.io.IOException;
 
 @WebServlet("/lose")
 public class EndServlet extends HttpServlet {
-    LoseService endQuestService=LoseService.getService();
+    Logger logger= LoggerFactory.getLogger(EndServlet.class);
+    LoseService loseService=LoseService.getService();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String answer = request.getParameter("answer");
-        endQuestService.checkAnswer(new Answer(answer));
-        String nextUrl = endQuestService.getNextStep().getUrl();
+        String nextUrl = loseService.getNextStep().getUrl();
         RequestDispatcher requestDispatcher = request.getServletContext().getRequestDispatcher(nextUrl);
         requestDispatcher.forward(request,response);
+        logger.debug("Restart quest after lose");
     }
 }

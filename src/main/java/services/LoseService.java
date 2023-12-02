@@ -5,12 +5,6 @@ public class LoseService extends Service{
     private static final LoseService service=new LoseService();
     private LoseService() {
     }
-
-    @Override
-    public void checkAnswer(Answer answer) {
-
-    }
-
     @Override
     public Service getNextStep() {
         return StartService.getService();

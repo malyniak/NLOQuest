@@ -1,5 +1,7 @@
 package servlets;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import services.Answer;
 import services.IntroduceYourselfService;
 
@@ -13,6 +15,7 @@ import java.io.IOException;
 
 @WebServlet("/introduce")
 public class IntroduceYourselfServlet extends HttpServlet {
+    Logger logger= LoggerFactory.getLogger(IntroduceYourselfServlet.class);
     IntroduceYourselfService service=IntroduceYourselfService.getInstance();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String answer = request.getParameter("answer");
@@ -20,5 +23,6 @@ public class IntroduceYourselfServlet extends HttpServlet {
         String nextUrl = service.getNextStep().getUrl();
         RequestDispatcher requestDispatcher = request.getServletContext().getRequestDispatcher(nextUrl);
         requestDispatcher.forward(request,response);
+        logger.info("Client go to "+nextUrl);
     }
 }
