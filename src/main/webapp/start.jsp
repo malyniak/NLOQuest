@@ -1,32 +1,34 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="static text.TextContent.*" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Quiz</title>
+    <link href="static/start.css" rel="stylesheet">
 </head>
 <body>
-<div>
+<h2 class="welcome">
     <c:if test="${not empty sessionScope.player}">
-        <p>Ласкаво просимо, <c:out value="${sessionScope.player}" />!</p>
+     <%=WELCOME%> <c:out value="${sessionScope.player} " escapeXml="false"/>!
     </c:if>
-   <%=LOSE_MEMORY %>
-</div>
+</h2>
+<div class="form-wrapper">
+<div class="question" ><%=LOSE_MEMORY %></div>
 
-
-<form method="post" action="/start">
+<form class="click_form" method="post" action="/start">
     <label>
-        <input type="radio" name="answer" value="accept">
+        <input class="option1" type="radio" name="answer" value="accept">
         <%=ACCEPT%>
     </label>
     <br>
     <label>
-        <input type="radio" name="answer" value="reject"> <%=REJECT%>
+        <input class="option1" type="radio" name="answer" value="reject"> <%=REJECT%>
     </label>
     <br>
-    <button type="submit"><%=SEND%>
+    <button class="ui-button" type="submit"><%=SEND%>
     </button>
 </form>
+</div>
 </body>
 </html>

@@ -5,12 +5,14 @@
 <html>
 <head>
     <title>Quiz</title>
+    <link href="static/introduce.css" rel="stylesheet">
 </head>
 <body>
-<div>
+<div class="form-wrapper">
+<div class="question">
     ${sessionScope.player}
     <%=", " + WHO_ARE_YOU%></div>
-<form method="post" action="/introduce">
+<form class="click_form" method="post" action="/introduce">
     <label>
         <input type="radio" name="answer" value="truth"><%=SAY_TRUTH%>
     </label>
@@ -19,7 +21,8 @@
         <input type="radio" name="answer" value="lie"><%=LIE%>
     </label>
     <br>
-    <button type="submit"><%=SEND%>></button>
+    <button class="ui-button" type="submit"><%=SEND%></button>
 </form>
+</div>
 </body>
 </html>

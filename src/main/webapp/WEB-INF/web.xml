@@ -10,4 +10,7 @@
   <welcome-file-list>
     <welcome-file>inputName.jsp</welcome-file>
   </welcome-file-list>
+
+
+
 </web-app>

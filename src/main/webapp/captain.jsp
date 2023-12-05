@@ -6,23 +6,26 @@
 <html>
 <head>
     <title>Quiz</title>
+    <link href="static/captain.css" rel="stylesheet">
 </head>
 <body>
-<div>
+<div class="form-wrapper">
+<div class="question">
    ${sessionScope.player}
     <%=", " + UP_ON_BRIDGE%>
 </div>
-<form method="post" action="/captain">
+<form class="click_form" method="post" action="/captain">
     <label>
-        <input type="radio" name="answer" value="accept"> <%=ACCEPT_UP%>
+        <input class="option1" type="radio" name="answer" value="accept_up"> <%=ACCEPT_UP%>
     </label>
     <br>
     <label>
-        <input type="radio" name="answer" value="reject"> <%=REJECT_UP%>
+        <input class="option1" type="radio" name="answer" value="reject_up"> <%=REJECT_UP%>
     </label>
     <br>
-    <button type="submit"><%=SEND%>
+    <button class="ui-button" type="submit"><%=SEND%>
     </button>
 </form>
+    </div>
 </body>
 </html>

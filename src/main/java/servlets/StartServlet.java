@@ -15,14 +15,19 @@ import java.io.IOException;
 
 @WebServlet("/start")
 public class StartServlet extends HttpServlet {
-    Logger logger= LoggerFactory.getLogger(StartServlet.class);
-    StartService service=StartService.getService();
+    Logger logger = LoggerFactory.getLogger(StartServlet.class);
+    StartService service = StartService.getService();
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String answer = request.getParameter("answer");
-        service.checkAnswer(new Answer(answer));
-        String nextUrl = service.getNextStep().getUrl();
-        RequestDispatcher requestDispatcher = request.getServletContext().getRequestDispatcher(nextUrl);
-        requestDispatcher.forward(request,response);
-        logger.info("Go the "+nextUrl);
+        Object score = request.getSession().getAttribute("score");
+        if (score == null) {
+                request.getSession().setAttribute("score", 0);
+            }
+            service.checkAnswer(new Answer(answer));
+            String nextUrl = service.getNextStep().getUrl();
+            RequestDispatcher requestDispatcher = request.getServletContext().getRequestDispatcher(nextUrl);
+            requestDispatcher.forward(request, response);
+            logger.info("Go the " + nextUrl);
     }
 }

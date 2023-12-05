@@ -8,6 +8,7 @@ public class IntroduceYourselfService extends Service implements Checking{
     private static final IntroduceYourselfService service = new IntroduceYourselfService();
     private String url = "/introduce.jsp";
     private Service nextStep;
+    private int score=0;
 
     @Override
     public Service getNextStep() {
@@ -20,7 +21,7 @@ public class IntroduceYourselfService extends Service implements Checking{
         return url;
     }
 
-    public static IntroduceYourselfService getInstance() {
+    public static IntroduceYourselfService getService() {
         return service;
     }
     public void checkAnswer(Answer answer) {
@@ -29,8 +30,12 @@ public class IntroduceYourselfService extends Service implements Checking{
             logger.debug("User make choice to lie");
         } else {
             nextStep=WinService.getService();
+            score++;
             logger.debug("User make choice to say truth");
         }
+    }
 
+    public int getScore() {
+        return score;
     }
 }

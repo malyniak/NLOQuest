@@ -10,7 +10,7 @@ public class CaptainBridgeService extends Service implements Checking {
     private String url="/captain.jsp";
     private CaptainBridgeService() {
     }
-    public static CaptainBridgeService getInstance() {
+    public static CaptainBridgeService getService() {
         return service;
     }
     @Override
@@ -23,11 +23,11 @@ public class CaptainBridgeService extends Service implements Checking {
     }
 
     public void checkAnswer(Answer answer) {
-        if(answer.getText().equals("reject")) {
+        if(answer.getText().equals("reject_up")) {
             nextStep= LoseService.getService();
             logger.info("User make choice don`t up on captain bridge");
         } else {
-            nextStep=IntroduceYourselfService.getInstance();
+            nextStep=IntroduceYourselfService.getService();
             logger.info("User make choice up on captain bridge");
         }
 

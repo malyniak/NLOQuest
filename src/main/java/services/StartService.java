@@ -28,7 +28,7 @@ public class StartService extends Service implements Checking{
             nextStep= LoseService.getService();
             logger.info("User make choice to reject challenge");
         } else {
-            nextStep=CaptainBridgeService.getInstance();
+            nextStep=CaptainBridgeService.getService();
             logger.info("User make choice to accept challenge");
         }
 
