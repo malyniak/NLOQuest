@@ -12,7 +12,6 @@ public class StartService extends Service implements Checking{
     private StartService() {
     }
     public static StartService getService() {
-          LogbackConfigLoader.load();
         return startService;
     }
 

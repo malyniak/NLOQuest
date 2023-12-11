@@ -4,18 +4,21 @@
 <html>
 <head>
     <title>Title</title>
+    <link href="static/lose.css" rel="stylesheet">
 </head>
 <body>
-<div>
-    ${sessionScope.player}
-    <%=", " + END%>
-    ${sessionScope.score}
+<div class="restart-container">
+    <div>
+        ${sessionScope.player}
+        <%=", " + END%>
+        ${sessionScope.score}
+    </div>
+    <button class="ui-button" type="button" onclick="restart()" value="<%=RESTART%>">Restart</button>
+    <script>
+        function restart() {
+            window.location.href = "/start.jsp";
+        }
+    </script>
 </div>
-<button type="button" onclick="restart()" value="<%=RESTART%>">Restart</button>
-<script>
-    function restart() {
-        window.location.href = "/start.jsp";
-    }
-</script>
 </body>
 </html>

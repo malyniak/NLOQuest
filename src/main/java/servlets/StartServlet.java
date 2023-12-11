@@ -22,12 +22,17 @@ public class StartServlet extends HttpServlet {
         String answer = request.getParameter("answer");
         Object score = request.getSession().getAttribute("score");
         if (score == null) {
-                request.getSession().setAttribute("score", 0);
-            }
+            request.getSession().setAttribute("score", 0);
+        }
+        if(answer.isEmpty()) {
+            getServletContext().getRequestDispatcher("/warning.jsp");
+        }
+        else {
             service.checkAnswer(new Answer(answer));
             String nextUrl = service.getNextStep().getUrl();
             RequestDispatcher requestDispatcher = request.getServletContext().getRequestDispatcher(nextUrl);
             requestDispatcher.forward(request, response);
             logger.info("Go the " + nextUrl);
+        }
     }
 }

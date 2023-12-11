@@ -7,6 +7,7 @@
 <head>
     <title>Quiz</title>
     <link href="static/captain.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 <div class="form-wrapper">
@@ -16,11 +17,11 @@
 </div>
 <form class="click_form" method="post" action="/captain">
     <label>
-        <input class="option1" type="radio" name="answer" value="accept_up"> <%=ACCEPT_UP%>
+        <input class="option" type="radio" name="answer" value="accept_up"> <%=ACCEPT_UP%>
     </label>
     <br>
     <label>
-        <input class="option1" type="radio" name="answer" value="reject_up"> <%=REJECT_UP%>
+        <input class="option" type="radio" name="answer" value="reject_up"> <%=REJECT_UP%>
     </label>
     <br>
     <button class="ui-button" type="submit"><%=SEND%>
