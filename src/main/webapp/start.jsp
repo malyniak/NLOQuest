@@ -5,8 +5,8 @@
 <html>
 <head>
     <title>Quiz</title>
-    <link href="static/start.css" rel="stylesheet">
 
+    <link href="static/start.css" rel="stylesheet">
 </head>
 <body>
 <h2 class="welcome">

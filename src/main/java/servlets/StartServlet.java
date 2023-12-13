@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 @WebServlet("/start")
 public class StartServlet extends HttpServlet {
@@ -24,8 +25,8 @@ public class StartServlet extends HttpServlet {
         if (score == null) {
             request.getSession().setAttribute("score", 0);
         }
-        if(answer.isEmpty()) {
-            getServletContext().getRequestDispatcher("/warning.jsp");
+        if(Optional.ofNullable(answer).orElse("empty").equals("empty")) {
+            getServletContext().getRequestDispatcher("/warning.jsp").forward(request, response);
         }
         else {
             service.checkAnswer(new Answer(answer));
