@@ -1,6 +1,5 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="static text.TextContent.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -11,23 +10,23 @@
 <body>
 <h2 class="welcome">
     <c:if test="${not empty sessionScope.player}">
-     <%=WELCOME%> <c:out value="${sessionScope.player} " escapeXml="false"/>!
+        "Ласкаво просимо, " <c:out value="${sessionScope.player} " escapeXml="false"/>!
     </c:if>
 </h2>
 <div class="form-wrapper">
-<div class="question" ><%=LOSE_MEMORY %></div>
+<div class="question" >"Ви втрачаєте пам'ять. Прийняти виклик НЛО?"</div>
 
         <form class="click_form" method="post" action="/start">
             <label>
                 <input class="option" type="radio" name="answer" value="accept">
-                <%=ACCEPT%>
+                "Прийняти виклик"
             </label>
         <br>
         <label>
-            <input class="option" type="radio" name="answer" value="reject"> <%=REJECT%>
+            <input class="option" type="radio" name="answer" value="reject"> "Відхилити виклик"
         </label>
         <br>
-        <button class="ui-button" type="submit"><%=SEND%></button>
+        <button class="ui-button" type="submit">"Відправити відповідь"</button>
     </form>
 
     </div>

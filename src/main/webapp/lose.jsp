@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="static text.TextContent.*" %>
+
 <html>
 <head>
     <title>Title</title>
@@ -9,11 +9,10 @@
 <body>
 <div class="restart-container">
     <div>
-        ${sessionScope.player}
-        <%=", " + END%>
+        ${sessionScope.player}, поразка. Кількість перемог -
         ${sessionScope.score}
     </div>
-    <button class="ui-button" type="button" onclick="restart()" value="<%=RESTART%>">Restart</button>
+    <button class="ui-button" type="button" onclick="restart()" value="Розпочати заново">Restart</button>
     <script>
         function restart() {
             window.location.href = "/start.jsp";
