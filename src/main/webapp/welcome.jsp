@@ -8,13 +8,13 @@
 <div class="form-wrapper">
     <form class="click_form" method="post" action="/welcome">
         <label>
-            <input class="option" type="button" name="answer" value="ReadStory" onclick="readStory()">
+            <input class="option" type="button" name="answer" value="Читати історію" onclick="readStory()">
 
         </label>
         <div id="textContainer">
         </div>
         <label>
-            <input class="option" type="submit" name="answer" value="StartQuest" onclick="startQuest()">
+            <input class="option" type="submit" name="answer" value="Розпочати квест" onclick="startQuest()">
         </label>
     </form>
 </div>

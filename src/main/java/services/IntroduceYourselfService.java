@@ -10,10 +10,6 @@ public class IntroduceYourselfService extends Service implements Checking{
     private Service nextStep;
     private int score=0;
 
-    @Override
-    public Service getNextStep() {
-        return nextStep;
-    }
     private IntroduceYourselfService() {
     }
     @Override
@@ -24,14 +20,16 @@ public class IntroduceYourselfService extends Service implements Checking{
     public static IntroduceYourselfService getService() {
         return service;
     }
-    public void checkAnswer(Answer answer) {
+    public Service checkAnswer(Answer answer) {
         if(answer.getText().equals("lie")) {
             nextStep= LoseService.getService();
             logger.debug("User make choice to lie");
+            return LoseService.getService();
         } else {
             nextStep=WinService.getService();
             score++;
             logger.debug("User make choice to say truth");
+            return WinService.getService();
         }
     }
 

@@ -6,11 +6,6 @@ public class LoseService extends Service{
     private LoseService() {
     }
     @Override
-    public Service getNextStep() {
-        return StartService.getService();
-    }
-
-    @Override
     public String getUrl() {
         return url;
     }

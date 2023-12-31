@@ -6,7 +6,6 @@ public class InputNameService extends Service{
     public static InputNameService getService() {
         return service;
     }
-    @Override
     public Service getNextStep() {
         return StartService.getService();
     }

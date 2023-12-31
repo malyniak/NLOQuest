@@ -2,7 +2,10 @@ package servlets;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import playerInfo.Player;
 import services.Answer;
+import services.CaptainBridgeService;
+import services.Service;
 import services.StartService;
 
 import javax.servlet.RequestDispatcher;
@@ -21,19 +24,23 @@ public class StartServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String answer = request.getParameter("answer");
-        Object score = request.getSession().getAttribute("score");
-        if (score == null) {
-            request.getSession().setAttribute("score", 0);
-        }
-        if(Optional.ofNullable(answer).orElse("empty").equals("empty")) {
-            getServletContext().getRequestDispatcher("/warning.jsp").forward(request, response);
+        int score = Integer.parseInt(Optional.ofNullable(request.getSession().getAttribute("score")).orElse(0).toString());
+        String playerName=request.getSession().getAttribute("player").toString();
+        Player player = new Player(playerName, score);
+        request.getSession().setAttribute("player", player);
+        Service nextService = service.checkAnswer(new Answer(answer));
+        if(nextService== CaptainBridgeService.getService()) {
+            RequestDispatcher requestDispatcher = request.getServletContext().getRequestDispatcher("/captain.jsp");
+            requestDispatcher.forward(request, response);
+            logger.info("Go the " + nextService.getUrl());
         }
         else {
-            service.checkAnswer(new Answer(answer));
-            String nextUrl = service.getNextStep().getUrl();
-            RequestDispatcher requestDispatcher = request.getServletContext().getRequestDispatcher(nextUrl);
+            RequestDispatcher requestDispatcher = request.getServletContext().getRequestDispatcher("/lose.jsp");
             requestDispatcher.forward(request, response);
-            logger.info("Go the " + nextUrl);
+            logger.info("Lose quest");
         }
+
+
+
     }
 }

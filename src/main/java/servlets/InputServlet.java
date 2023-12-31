@@ -18,6 +18,6 @@ public class InputServlet extends HttpServlet {
         String username = req.getParameter("player");
         HttpSession session = req.getSession();
         session.setAttribute("player", username);
-        req.getServletContext().getRequestDispatcher(service.getNextStep().getUrl()).forward(req,resp);
+        req.getServletContext().getRequestDispatcher("/start.jsp").forward(req,resp);
     }
 }

@@ -13,22 +13,20 @@ public class CaptainBridgeService extends Service implements Checking {
     public static CaptainBridgeService getService() {
         return service;
     }
-    @Override
-    public Service getNextStep() {
-        return nextStep;
-    }
 
     public String getUrl() {
         return url;
     }
 
-    public void checkAnswer(Answer answer) {
+    public Service checkAnswer(Answer answer) {
         if(answer.getText().equals("reject_up")) {
             nextStep= LoseService.getService();
             logger.info("User make choice don`t up on captain bridge");
+            return LoseService.getService();
         } else {
             nextStep=IntroduceYourselfService.getService();
             logger.info("User make choice up on captain bridge");
+            return IntroduceYourselfService.getService();
         }
 
     }

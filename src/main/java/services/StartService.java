@@ -7,7 +7,6 @@ public class StartService extends Service implements Checking {
     public static final Logger logger = LoggerFactory.getLogger(StartService.class);
     private static final StartService startService = new StartService();
     private String url = "/start.jsp";
-    private Service nextStep;
 
     private StartService() {
     }
@@ -16,21 +15,17 @@ public class StartService extends Service implements Checking {
         return startService;
     }
 
-    public Service getNextStep() {
-        return nextStep;
-    }
-
     public String getUrl() {
         return url;
     }
 
-    public void checkAnswer(Answer answer) {
+    public Service checkAnswer(Answer answer) {
         if (answer.getText().equals("reject")) {
-            nextStep = LoseService.getService();
             logger.info("User make choice to reject challenge");
+            return  LoseService.getService();
         } else {
-            nextStep = CaptainBridgeService.getService();
             logger.info("User make choice to accept challenge");
+            return CaptainBridgeService.getService();
         }
 
     }
