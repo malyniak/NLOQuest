@@ -10,7 +10,7 @@
 <div class="restart-container">
 <div>
     ${sessionScope.player}, Вас повернули додому. Перемога. Кількість перемог -
-    ${sessionScope.score}
+    ${sessionScope.player.score}
 
 </div>
 <form class="restart-form" action="/restart" method="post">

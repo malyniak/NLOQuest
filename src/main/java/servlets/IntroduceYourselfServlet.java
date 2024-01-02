@@ -25,11 +25,12 @@ public class IntroduceYourselfServlet extends HttpServlet {
         String answer = request.getParameter("answer");
         Service nextService = service.checkAnswer(new Answer(answer));
         HttpSession session = request.getSession();
-        Player player =(Player) session.getAttribute("player");
-        player.setScore(player.getScore()+1);
-        session.removeAttribute("player");
-        session.setAttribute("player", player);
+
         if(nextService== WinService.getService()) {
+            Player player =(Player) session.getAttribute("player");
+            player.setScore(player.getScore()+1);
+            session.removeAttribute("player");
+            session.setAttribute("player", player);
             RequestDispatcher requestDispatcher = request.getServletContext().getRequestDispatcher("/win.jsp");
             requestDispatcher.forward(request,response);
             logger.info("Client win");

@@ -1,27 +1,24 @@
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import services.Answer;
-import services.IntroduceYourselfService;
-import services.LoseService;
-import services.WinService;
+import services.*;
+
+import static junit.framework.Assert.assertEquals;
 
 public class IntroduceYourselfTest {
     @Test
-    @Disabled
     public void testNextStepWhenPlayerSayTruth() {
-        WinService nextStep=WinService.getService();
-        IntroduceYourselfService service=IntroduceYourselfService.getService();
-        Answer answer=new Answer("truth");
-        service.checkAnswer(answer);
-     //   assertEquals(service.getNextStep(), nextStep);
+        WinService nextService = WinService.getService();
+        IntroduceYourselfService service = IntroduceYourselfService.getService();
+        Answer answer = new Answer("truth");
+        Service resultService = service.checkAnswer(answer);
+        assertEquals(resultService, nextService);
     }
+
     @Test
-    @Disabled
     public void testNextStepWhenPlayerLie() {
-        LoseService nextStep=LoseService.getService();
-        IntroduceYourselfService service=IntroduceYourselfService.getService();
-        Answer answer=new Answer("lie");
-        service.checkAnswer(answer);
-      //  assertEquals(service.getNextStep(), nextStep);
+        LoseService nextService = LoseService.getService();
+        IntroduceYourselfService service = IntroduceYourselfService.getService();
+        Answer answer = new Answer("lie");
+        Service resultService = service.checkAnswer(answer);
+        assertEquals(resultService, nextService);
     }
 }

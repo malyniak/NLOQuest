@@ -10,7 +10,7 @@
 <div class="restart-container">
     <div>
         ${sessionScope.player}, поразка. Кількість перемог -
-        ${sessionScope.score}
+        ${sessionScope.player.score}
     </div>
     <button class="ui-button" type="button" onclick="restart()" value="Розпочати заново">Restart</button>
     <script>

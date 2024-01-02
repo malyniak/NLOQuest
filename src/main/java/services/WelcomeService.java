@@ -10,17 +10,12 @@ public class WelcomeService extends Service {
     private WelcomeService() {
     }
 
-
-    @Override
-    public String getUrl() {
-        return "/welcome.jsp";
-    }
-
     public static WelcomeService getService() {
         return service;
     }
 
     public Service checkAnswer(Answer answer) {
+        logger.info("Starts...");
         return InputNameService.getService();
 
     }
