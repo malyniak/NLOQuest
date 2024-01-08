@@ -1,12 +1,7 @@
 package servlets;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import services.Answer;
-import services.CaptainBridgeService;
-import services.IntroduceYourselfService;
-import services.Service;
-
+import org.slf4j.*;
+import services.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,8 +17,7 @@ public class CaptainBridgeServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String answer = request.getParameter("answer");
-        Service nextService = captainBridgeService.checkAnswer(new Answer(answer));
-        if(nextService== IntroduceYourselfService.getService()) {
+        if(captainBridgeService.checkAnswer(new Answer(answer))) {
             RequestDispatcher requestDispatcher = request.getServletContext().getRequestDispatcher("/introduce.jsp");
             requestDispatcher.forward(request, response);
             logger.info("Go the /introduce.jsp");

@@ -1,8 +1,6 @@
 package servlets;
 
 import playerInfo.Player;
-import services.InputNameService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +12,6 @@ import java.util.Optional;
 
 @WebServlet("/input")
 public class InputServlet extends HttpServlet {
-    private InputNameService service=InputNameService.getService();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();

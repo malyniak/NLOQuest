@@ -1,24 +1,26 @@
 package services;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.*;
 
-public class StartService extends Service implements Checking {
-    public static final Logger logger = LoggerFactory.getLogger(StartService.class);
+public class StartService extends Service {
+    private static final Logger logger = LoggerFactory.getLogger(StartService.class);
     private static final StartService startService = new StartService();
+    private static final String REJECT = "reject";
+
     private StartService() {
     }
+
     public static StartService getService() {
         return startService;
     }
 
-    public Service checkAnswer(Answer answer) {
-        if (answer.getText().equals("reject")) {
+    public boolean checkAnswer(Answer answer) {
+        if (REJECT.equals(answer.getText())) {
             logger.info("User make choice to reject challenge");
-            return  LoseService.getService();
+            return false;
         } else {
             logger.info("User make choice to accept challenge");
-            return CaptainBridgeService.getService();
+            return true;
         }
 
     }

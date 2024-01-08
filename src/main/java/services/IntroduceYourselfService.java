@@ -1,24 +1,25 @@
 package services;
+import org.slf4j.*;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-public class IntroduceYourselfService extends Service implements Checking{
-    public static final Logger logger= LoggerFactory.getLogger(IntroduceYourselfService.class);
+public class IntroduceYourselfService extends Service {
+    private static final Logger logger = LoggerFactory.getLogger(IntroduceYourselfService.class);
     private static final IntroduceYourselfService service = new IntroduceYourselfService();
+    public static final String LIE = "lie";
+
     private IntroduceYourselfService() {
     }
+
     public static IntroduceYourselfService getService() {
         return service;
     }
-    public Service checkAnswer(Answer answer) {
-        if(answer.getText().equals("lie")) {
-            logger.debug("User make choice to lie");
 
-            return LoseService.getService();
+    public boolean checkAnswer(Answer answer) {
+        if (LIE.equals(answer.getText())) {
+            logger.debug("User make choice to lie");
+            return false;
         } else {
             logger.debug("User make choice to say truth");
-            return WinService.getService();
+            return true;
         }
     }
 }

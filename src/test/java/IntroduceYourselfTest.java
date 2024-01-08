@@ -1,24 +1,22 @@
 import org.junit.jupiter.api.Test;
 import services.*;
 
-import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.*;
 
 public class IntroduceYourselfTest {
     @Test
     public void testNextStepWhenPlayerSayTruth() {
-        WinService nextService = WinService.getService();
         IntroduceYourselfService service = IntroduceYourselfService.getService();
         Answer answer = new Answer("truth");
-        Service resultService = service.checkAnswer(answer);
-        assertEquals(resultService, nextService);
+        boolean result = service.checkAnswer(answer);
+        assertTrue(result);
     }
 
     @Test
     public void testNextStepWhenPlayerLie() {
-        LoseService nextService = LoseService.getService();
         IntroduceYourselfService service = IntroduceYourselfService.getService();
         Answer answer = new Answer("lie");
-        Service resultService = service.checkAnswer(answer);
-        assertEquals(resultService, nextService);
+        boolean result = service.checkAnswer(answer);
+        assertFalse(result);
     }
 }

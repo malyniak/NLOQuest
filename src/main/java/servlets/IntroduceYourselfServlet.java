@@ -1,13 +1,8 @@
 package servlets;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.*;
 import playerInfo.Player;
-import services.Answer;
-import services.IntroduceYourselfService;
-import services.Service;
-import services.WinService;
-
+import services.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,10 +18,8 @@ public class IntroduceYourselfServlet extends HttpServlet {
     IntroduceYourselfService service=IntroduceYourselfService.getService();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String answer = request.getParameter("answer");
-        Service nextService = service.checkAnswer(new Answer(answer));
         HttpSession session = request.getSession();
-
-        if(nextService== WinService.getService()) {
+        if(service.checkAnswer(new Answer(answer))) {
             Player player =(Player) session.getAttribute("player");
             player.setScore(player.getScore()+1);
             session.removeAttribute("player");

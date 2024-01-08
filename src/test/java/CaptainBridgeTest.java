@@ -1,24 +1,22 @@
 import org.junit.jupiter.api.Test;
 import services.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CaptainBridgeTest {
     @Test
     public void testNextStepWhenAnswerUpOnBridge() {
-        IntroduceYourselfService nextService=IntroduceYourselfService.getService();
         CaptainBridgeService service=CaptainBridgeService.getService();
         Answer answer=new Answer("accept_up");
-        Service resultService = service.checkAnswer(answer);
-        assertEquals(resultService, nextService);
+        boolean result = service.checkAnswer(answer);
+        assertTrue(result);
     }
 
     @Test
     public void testNextStepWhenAnswerRejectChallenge() {
-        LoseService nextService=LoseService.getService();
         CaptainBridgeService service=CaptainBridgeService.getService();
         Answer answer=new Answer("reject_up");
-        Service resultService = service.checkAnswer(answer);
-        assertEquals(resultService, nextService);
+        boolean result = service.checkAnswer(answer);
+        assertFalse(result);
     }
 }
