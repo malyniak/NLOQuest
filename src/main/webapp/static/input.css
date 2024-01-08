@@ -1,0 +1,21 @@
+body {
+    font-size: 17px;
+}
+.form-wrapper {
+    background: beige;
+    border: 2px solid;
+    padding: 20px 20px 0 20px;
+    display:inline-block;
+    max-width: 100%;
+}
+.ui-button {
+    border-color: #822121;
+    border-radius: 10px;
+    padding: 7px;
+}
+.welcome {
+    text-align: center;
+}
+.input-text {
+   border-radius: 5px;
+}

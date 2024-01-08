@@ -1,26 +1,29 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="static text.TextContent.ACCEPT_UP" %>
-<%@ page import="static text.TextContent.UP_ON_BRIDGE" %>
-<%@ page import="static text.TextContent.*" %>
+
 <html>
 <head>
     <title>Quiz</title>
+    <link href="static/captain.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-<div><%=UP_ON_BRIDGE%>
+<div class="form-wrapper">
+<div class="question">
+   ${sessionScope.player}, Ви прийняли виклик. Піднятися на капітанський місток?
 </div>
-<form method="post" action="/captain">
+<form class="click_form" method="post" action="/captain">
     <label>
-        <input type="radio" name="answer" value="accept"> <%=ACCEPT_UP%>
+        <input class="option" type="radio" name="answer" value="accept_up">"Піднятися на місток"
     </label>
     <br>
     <label>
-        <input type="radio" name="answer" value="reject"> <%=REJECT_UP%>
+        <input class="option" type="radio" name="answer" value="reject_up">Відмовитися підніматися на місток"
     </label>
     <br>
-    <button type="submit"><%=SEND%>
+    <button class="ui-button" type="submit">Відправити відповідь
     </button>
 </form>
+    </div>
 </body>
 </html>
