@@ -1,29 +1,25 @@
 package services;
+import org.slf4j.*;
 
 public class IntroduceYourselfService extends Service {
+    private static final Logger logger = LoggerFactory.getLogger(IntroduceYourselfService.class);
     private static final IntroduceYourselfService service = new IntroduceYourselfService();
-    private String url = "/introduce.jsp";
-    private Service nextStep;
+    public static final String LIE = "lie";
 
-    @Override
-    public Service getNextStep() {
-        return nextStep;
-    }
-    private IntroduceYourselfService() {}
-    @Override
-    public String getUrl() {
-        return url;
+    private IntroduceYourselfService() {
     }
 
-    public static IntroduceYourselfService getInstance() {
+    public static IntroduceYourselfService getService() {
         return service;
     }
-    public void checkAnswer(Answer answer) {
-        if(answer.getText().equals("lie")) {
-            nextStep= LoseService.getService();
-        } else {
-            nextStep=WinService.getService();
-        }
 
+    public boolean checkAnswer(Answer answer) {
+        if (LIE.equals(answer.getText())) {
+            logger.debug("User make choice to lie");
+            return false;
+        } else {
+            logger.debug("User make choice to say truth");
+            return true;
+        }
     }
 }

@@ -1,27 +1,26 @@
 package services;
 
+import org.slf4j.*;
+
 public class StartService extends Service {
-    private static final StartService startService=new StartService();
-    private String url="/start.jsp";
-    private Service nextStep;
+    private static final Logger logger = LoggerFactory.getLogger(StartService.class);
+    private static final StartService startService = new StartService();
+    private static final String REJECT = "reject";
+
     private StartService() {
     }
+
     public static StartService getService() {
         return startService;
     }
 
-    public Service getNextStep() {
-        return nextStep;
-    }
-    public String getUrl() {
-        return url;
-    }
-
-    public void checkAnswer(Answer answer) {
-        if(answer.getText().equals("reject")) {
-            nextStep= LoseService.getService();
+    public boolean checkAnswer(Answer answer) {
+        if (REJECT.equals(answer.getText())) {
+            logger.info("User make choice to reject challenge");
+            return false;
         } else {
-            nextStep=CaptainBridgeService.getInstance();
+            logger.info("User make choice to accept challenge");
+            return true;
         }
 
     }
