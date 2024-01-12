@@ -1,5 +1,5 @@
 package services;
 
 public abstract class Service {
-   public abstract boolean checkAnswer(Answer answer);
+   public abstract Answer checkAnswer(String answer);
 }

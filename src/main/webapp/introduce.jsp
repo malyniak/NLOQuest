@@ -11,11 +11,11 @@
 </div>
 <form class="click_form" method="post" action="/introduce">
     <label>
-        <input type="radio" name="answer" value="truth">Розповісти правду про себе
+        <input type="radio" name="answer" value="accept">Розповісти правду про себе
     </label>
     <br>
     <label>
-        <input type="radio" name="answer" value="lie">Збрехати
+        <input type="radio" name="answer" value="reject">Збрехати
     </label>
     <br>
     <button class="ui-button" type="submit">Відправити відповідь</button>

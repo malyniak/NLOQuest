@@ -1,25 +1,18 @@
 package services;
+
 import org.slf4j.*;
+import static services.Answer.*;
 
 public class IntroduceYourselfService extends Service {
     private static final Logger logger = LoggerFactory.getLogger(IntroduceYourselfService.class);
-    private static final IntroduceYourselfService service = new IntroduceYourselfService();
-    public static final String LIE = "lie";
 
-    private IntroduceYourselfService() {
-    }
-
-    public static IntroduceYourselfService getService() {
-        return service;
-    }
-
-    public boolean checkAnswer(Answer answer) {
-        if (LIE.equals(answer.getText())) {
+    public Answer checkAnswer(String answer) {
+        if (REJECT.equals(answer)) {
             logger.debug("User make choice to lie");
-            return false;
+            return new RejectAnswer(REJECT);
         } else {
             logger.debug("User make choice to say truth");
-            return true;
+            return new AcceptAnswer(ACCEPT);
         }
     }
 }

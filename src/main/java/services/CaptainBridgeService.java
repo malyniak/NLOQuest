@@ -1,25 +1,17 @@
 package services;
 import org.slf4j.*;
+import static services.Answer.*;
 
 public class CaptainBridgeService extends Service{
-    private static final Logger logger = LoggerFactory.getLogger(CaptainBridgeService.class);
-    private static final CaptainBridgeService service = new CaptainBridgeService();
-    private static final String REJECT = "reject_up";
+    private final Logger logger = LoggerFactory.getLogger(CaptainBridgeService.class);
 
-    private CaptainBridgeService() {
-    }
-
-    public static CaptainBridgeService getService() {
-        return service;
-    }
-
-    public boolean checkAnswer(Answer answer) {
-        if (REJECT.equals(answer.getText())) {
+    public Answer checkAnswer(String answer) {
+        if (REJECT.equals(answer)) {
             logger.info("User make choice don`t up on captain bridge");
-            return false;
+            return new RejectAnswer(REJECT);
         } else {
             logger.info("User make choice up on captain bridge");
-            return true;
+            return new AcceptAnswer(ACCEPT);
         }
     }
 }

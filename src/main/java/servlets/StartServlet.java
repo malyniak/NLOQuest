@@ -2,7 +2,6 @@ package servlets;
 
 import org.slf4j.*;
 import services.*;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,22 +11,19 @@ import java.io.IOException;
 
 @WebServlet("/start")
 public class StartServlet extends HttpServlet {
-    Logger logger = LoggerFactory.getLogger(StartServlet.class);
-    StartService service = StartService.getService();
+    private final Logger logger = LoggerFactory.getLogger(StartServlet.class);
+    private final StartService service = new StartService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String answer = request.getParameter("answer");
-        if(service.checkAnswer(new Answer(answer))) {
-            RequestDispatcher requestDispatcher = request.getServletContext().getRequestDispatcher("/captain.jsp");
-            requestDispatcher.forward(request, response);
+        String textAnswer = request.getParameter("answer");
+        Answer answer = service.checkAnswer(textAnswer);
+        if (answer.getResult().equals(Answer.ACCEPT)) {
+            request.getServletContext().getRequestDispatcher("/captain.jsp").forward(request, response);
             logger.info("Go to /captain.jsp ");
-        }
-        else {
-            RequestDispatcher requestDispatcher = request.getServletContext().getRequestDispatcher("/lose.jsp");
-            requestDispatcher.forward(request, response);
+        } else {
+            request.getServletContext().getRequestDispatcher("/lose.jsp").forward(request, response);
             logger.info("Lose quest");
         }
-
 
 
     }

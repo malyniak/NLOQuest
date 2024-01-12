@@ -1,8 +1,10 @@
 package servlets;
 
-import org.slf4j.*;
-import playerInfo.Player;
-import services.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import services.Answer;
+import services.IntroduceYourselfService;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,20 +14,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static services.Answer.ACCEPT;
+
 @WebServlet("/introduce")
 public class IntroduceYourselfServlet extends HttpServlet {
-    Logger logger= LoggerFactory.getLogger(IntroduceYourselfServlet.class);
-    IntroduceYourselfService service=IntroduceYourselfService.getService();
+   private final Logger logger = LoggerFactory.getLogger(IntroduceYourselfServlet.class);
+   private final IntroduceYourselfService service = new IntroduceYourselfService();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String answer = request.getParameter("answer");
+        String textAnswer = request.getParameter("answer");
+        Answer answer = service.checkAnswer(textAnswer);
         HttpSession session = request.getSession();
-        if(service.checkAnswer(new Answer(answer))) {
-            Player player =(Player) session.getAttribute("player");
-            player.setScore(player.getScore()+1);
-            session.removeAttribute("player");
-            session.setAttribute("player", player);
-            RequestDispatcher requestDispatcher = request.getServletContext().getRequestDispatcher("/win.jsp");
-            requestDispatcher.forward(request,response);
+       if(answer.getResult().equals(ACCEPT)) {
+            int score =(int) session.getAttribute("score");
+            session.setAttribute("score", score + 1);
+            request.getServletContext().getRequestDispatcher("/win.jsp").forward(request,response);
             logger.info("Client win");
         }
         else {
@@ -33,6 +35,5 @@ public class IntroduceYourselfServlet extends HttpServlet {
             requestDispatcher.forward(request,response);
             logger.info("Client lose");
         }
-
-    }
+            }
 }

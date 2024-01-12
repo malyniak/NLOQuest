@@ -1,6 +1,5 @@
 package servlets;
 
-import playerInfo.Player;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,9 +15,9 @@ public class InputServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         int score = Integer.parseInt(Optional.ofNullable(session.getAttribute("score")).orElse(0).toString());
+        session.setAttribute("score", score);
         String playerName=req.getParameter("player");
-        Player player = new Player(playerName, score);
-        session.setAttribute("player", player);
+        session.setAttribute("player", playerName);
         req.getServletContext().getRequestDispatcher("/start.jsp").forward(req,resp);
     }
 }

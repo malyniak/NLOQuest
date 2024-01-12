@@ -14,11 +14,11 @@
 </div>
 <form class="click_form" method="post" action="/captain">
     <label>
-        <input class="option" type="radio" name="answer" value="accept_up">"Піднятися на місток"
+        <input class="option" type="radio" name="answer" value="accept">"Піднятися на місток"
     </label>
     <br>
     <label>
-        <input class="option" type="radio" name="answer" value="reject_up">Відмовитися підніматися на місток"
+        <input class="option" type="radio" name="answer" value="reject">Відмовитися підніматися на місток"
     </label>
     <br>
     <button class="ui-button" type="submit">Відправити відповідь
